@@ -51,13 +51,18 @@ class Handler(webapp2.RequestHandler):
 class Mainpage(Handler):
     def get(self):
         self.render("form13.html")
-   def post(self):
+   
+
+class rotHandler(Handler):
+    def post(self):
         usertext = self.request.get('text')
         text = rot13(usertext)
-        self.render("form13.html", text=text)     
+        self.render("rot13.html", text=text)   
 
-app=webapp2.WSGIApplication([('/', Mainpage)
-                             ],                                  
+app=webapp2.WSGIApplication([('/', Mainpage),
+                            ('/rot13', rotHandler)
+                            ],                                  
                            debug=True)
 
+        
 
